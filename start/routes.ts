@@ -23,3 +23,14 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async () => {
   return { hello: 'world' }
 })
+
+Route.post('/login', 'AuthController.login')
+Route.post('/logincreate', 'AuthController.create')
+
+Route.get('dashboard', async ({ auth }) => {
+  await auth.authenticate() //  👈 All you need to go
+
+  return {
+    hello: 'world',
+  }
+})
