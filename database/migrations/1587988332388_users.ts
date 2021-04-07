@@ -11,6 +11,7 @@ export default class UsersSchema extends BaseSchema {
       table.enu('type', ['normal', 'admin']).defaultTo('normal')
       table.string('email', 255).notNullable().unique()
       table.string('password', 180).notNullable()
+      table.specificType('services', 'services')
       table.string('remember_me_token').nullable()
       table.timestamps(true)
     })

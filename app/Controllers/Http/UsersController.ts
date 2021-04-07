@@ -3,8 +3,10 @@ import User from 'App/Models/User'
 
 export default class UsersController {
   public async index({}: HttpContextContract) {
-    const users = await User.all()
-
+    const users = await User.query().withCount('services')
+    users.forEach((user) => {
+      console.log(user.$extras.posts_count)
+    })
     return users
   }
 
