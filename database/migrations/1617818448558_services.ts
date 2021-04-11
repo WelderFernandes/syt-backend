@@ -21,14 +21,14 @@ export default class Services extends BaseSchema {
         .unsigned()
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
-      // table
-      //   .integer('category_id')
-      //   .references('id')
-      //   .inTable('categories')
-      //   .notNullable()
-      //   .unsigned()
-      //   .onUpdate('CASCADE')
-      //   .onDelete('CASCADE')
+      table
+        .integer('category_id')
+        .references('id')
+        .inTable('categories')
+        .notNullable()
+        .unsigned()
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
 
       table.timestamps(true)
     })

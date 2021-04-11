@@ -1,13 +1,16 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, belongsTo, column, BelongsTo, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
-
+import Category from './Category'
 export default class Service extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
   public userId: number
+
+  @column()
+  public categoryId: number
 
   @column()
   public name: string
@@ -26,6 +29,12 @@ export default class Service extends BaseModel {
 
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
-  // @hasOne(() => Category)
-  // public category_id: HasOne<typeof Category>
+
+  @hasOne(() => Category)
+  public category: HasOne<typeof Category>
+
+  // @hasOne(() => Category, {
+  //   foreignKey: 'categoryUserId',
+  // })
+  // public category: HasOne<typeof Category>
 }

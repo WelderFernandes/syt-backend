@@ -17,13 +17,17 @@ export default class ServicesController {
     service.value = data.value
     service.description = data.description
     service.userId = auth.user?.$attributes.id
+    service.categoryId = auth.user?.$attributes.id
 
     await service.save()
     return service.toJSON()
   }
 
   public async show({ params }: HttpContextContract) {
-    const service = await Services.query().preload('user').has('user').where('id', '=', params.id)
+    const service = await Services.query()
+      .preload('user')
+      .preload('category')
+      .where('id', '=', params.id)
 
     return service
   }
